@@ -20,7 +20,14 @@ import com.android.launcher3.Launcher;
 
 public class BlissLauncher extends Launcher {
 
+    private final BlissLauncherCallbacks mCallbacks;
+
     public BlissLauncher() {
-        setLauncherCallbacks(new BlissLauncherCallbacks(this));
+        mCallbacks = new BlissLauncherCallbacks(this);
+        setLauncherCallbacks(mCallbacks);
+    }
+
+    public BlissLauncherCallbacks getCallbacks() {
+        return mCallbacks;
     }
 }
