@@ -155,7 +155,7 @@ public class InvariantDeviceProfile {
 
     @TargetApi(23)
     private InvariantDeviceProfile(Context context) {
-        initGrid(context, null);
+        initGrid(context, Utilities.getPrefs(context).getString(KEY_IDP_GRID_NAME, null));
         mConfigMonitor = new ConfigMonitor(context,
                 APPLY_CONFIG_AT_RUNTIME.get() ? this::onConfigChanged : this::killProcess);
         mOverlayMonitor = new OverlayMonitor(context);
@@ -344,7 +344,7 @@ public class InvariantDeviceProfile {
         InvariantDeviceProfile oldProfile = new InvariantDeviceProfile(this);
 
         // Re-init grid
-        initGrid(context, null);
+        initGrid(context, Utilities.getPrefs(context).getString(KEY_IDP_GRID_NAME, null));
 
         int changeFlags = 0;
         if (numRows != oldProfile.numRows ||
